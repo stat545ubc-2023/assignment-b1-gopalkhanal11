@@ -2,7 +2,7 @@
 
 **Author**: Gopal Khanal\
 **Contact**: [gkhanal\@student.ubc.ca](mailto:gkhanal@student.ubc.ca){.email}
- 2023-11-02 
+ 2023-11-03 
 
 # Project Information
 This repository contains the source code for this project, including all the files for the Assignment B1 of course STAT545 B. The main tasks of this project were:
@@ -11,7 +11,7 @@ This repository contains the source code for this project, including all the fil
 -   Showing the application of the function with example
 -   Demonstrating if the function actually works with tests.
 
-I created a function `summary_stat` that provide quick descriptive summary of a numeric variable for a categorical variable.
+I created a function `summary.stat` that provide quick descriptive summary of a numeric variable for a categorical variable.
 
 **The files included in this repository, and their description is provided below** 
 

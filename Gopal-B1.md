@@ -164,16 +164,7 @@ penguins_summary
     ## 2 Chinstrap    68 3733.  2100  384.
     ## 3 Gentoo      124 5076.  2350  504.
 
-My function wouldn’t have worked if I had specified that my grouping
-variable should be of character class because here the class of species
-in penguins dataset is `factor`
-
-``` r
-# checking the class of species in penguins data set
-class(penguins$species)
-```
-
-    ## [1] "factor"
+## Mtcars data
 
 ### Use of numeric class variable as grouping variable
 
@@ -217,7 +208,7 @@ library(testthat)
 ### Test 1: Check whether the function output matches with the normal calculation
 
 ``` r
-# Get output from dplyr package and rename the dataframe
+# Use dplyr package to get the summary output of the data and rename the dataframe
 
 data1 <- penguins %>%
   group_by(species) %>%  
@@ -226,13 +217,14 @@ data1 <- penguins %>%
     range=max(body_mass_g, na.rm = TRUE)- min(body_mass_g, na.rm=TRUE),
     stdev = sd(body_mass_g, na.rm = TRUE))
   
+ # Check whether the output from function matches with the output from dplyr
 test_that("Check if function gives correct calculation", {
   expect_equal(summary.stat(penguins, species, body_mass_g), data1) 
-  # Check if it matches with the output from dplyr
+ 
 })
 ```
 
-    ## Test passed 🎉
+    ## Test passed 😸
 
 ### Test 2: Test of incorrect class of input variables in generated data
 
@@ -256,7 +248,7 @@ test_that('Test other cases that should give an error', {
 })
 ```
 
-    ## Test passed 🥳
+    ## Test passed 🎊
 
 ### Test 3: Use of incorrect class of input variables.
 
@@ -279,7 +271,7 @@ expect_error(summary.stat(vancouver_trees, neighbourhood_name, std_street), resu
 })
 ```
 
-    ## Test passed 😀
+    ## Test passed 😸
 
 ### Test 4: Incorrect naming of input variables.
 
@@ -300,7 +292,8 @@ test_that('Test of incorrect variable name should give an error', {
 ### Test 5: Test when the data contains NA’s. The function will work in that case if NAs are handled by function.
 
 For example, some of the values in penguins dataset has NAs. The
-function will handle the NA’s and won’t through error
+function will handle the NA’s and won’t through any error. I’ll
+calculate summary ignoring NAs.
 
 ``` r
 # Create a sample dataframe with NAs
@@ -319,4 +312,4 @@ test_that("Check if function gives correct calculation when the data contains NA
 expect_equal(summary.stat(test_data, species, body_mass_g), result2) })
 ```
 
-    ## Test passed 😀
+    ## Test passed 🌈
