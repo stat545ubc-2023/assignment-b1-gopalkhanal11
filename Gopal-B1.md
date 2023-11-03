@@ -55,23 +55,17 @@ variables.
 # Naming the function as summary.stat
 summary.stat <- function(dataset, group, value, na.rm = TRUE) {
   # Make the column names as string so that they are  used checking error and getting for error messages later.
-  
-  group1 <- deparse(substitute(group))
+    group1 <- deparse(substitute(group))
   value1 <- deparse(substitute(value))
-  
-  #  Check if there are non-numeric values in the variable that we want to summarize
-  
+    #  Check if there are non-numeric values in the variable that we want to summarize
    if(!is.numeric(dataset[[value1]])) {
     stop('Sorry, numeric variable can only be a numeric vector')
    }
-  
   # check if there are  NAs in the grouping variable. If yes, NAs will be considered and summarized as separate group.
     if((!is.null(group1) && anyNA(dataset[[group1]]))){
     warning("NAs are found in grouping variable. Consider NAs as a separate group")
   }
-  
   # Implement the function
-  
   dataset %>%
     group_by({{group}}) %>%
     summarize(
@@ -81,8 +75,7 @@ summary.stat <- function(dataset, group, value, na.rm = TRUE) {
       stdev = sd({{value}},na.rm = T))
 }
 #'@Title Get summary statistics of a variable across other variable
-#'
-#' Description: This function returns a table with the summary statistics such as total number of observations, mean, range and standard deviation of continuous variable across other variable.
+#' @Description: This function returns a table with the summary statistics such as total number of observations, mean, range and standard deviation of continuous variable across other variable.
 #' @param dataset A data frame that should have at least one continuous variable and other grouping variables. This is named to make better sense.
 #' @param group A vector which could be of factor, character or numeric or integer. The function will group values of another numeric variable according to this variable to yield summary statistics with new function. This is named as group to make typical sense about the grouping variable.
 #' @param value A numeric vector which should have numeric class. I named it value because it will be self evident that this variable is the one for which we have observation/values to summarize. 
@@ -224,7 +217,7 @@ test_that("Check if function gives correct calculation", {
 })
 ```
 
-    ## Test passed 😸
+    ## Test passed 🥳
 
 ### Test 2: Test of incorrect class of input variables in generated data
 
@@ -248,7 +241,7 @@ test_that('Test other cases that should give an error', {
 })
 ```
 
-    ## Test passed 🎊
+    ## Test passed 😀
 
 ### Test 3: Use of incorrect class of input variables.
 
@@ -271,7 +264,7 @@ expect_error(summary.stat(vancouver_trees, neighbourhood_name, std_street), resu
 })
 ```
 
-    ## Test passed 😸
+    ## Test passed 😀
 
 ### Test 4: Incorrect naming of input variables.
 
@@ -287,7 +280,7 @@ test_that('Test of incorrect variable name should give an error', {
 })
 ```
 
-    ## Test passed 🥳
+    ## Test passed 🌈
 
 ### Test 5: Test when the data contains NA’s. The function will work in that case if NAs are handled by function.
 
@@ -312,4 +305,4 @@ test_that("Check if function gives correct calculation when the data contains NA
 expect_equal(summary.stat(test_data, species, body_mass_g), result2) })
 ```
 
-    ## Test passed 🌈
+    ## Test passed 🎉
